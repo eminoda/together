@@ -7,7 +7,3 @@ module.exports = compose([
     user.routes(),
     router.allowedMethods()
 ])
-
-module.exports = (ctx, next) => {
-    next();
-}
