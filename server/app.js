@@ -7,12 +7,8 @@ let app = new Koa();
 app.use(middleware);
 debug('middleware is loaded');
 
-app.use(async (ctx, next) => {
-    await next();
-    console.log('================over');
-})
 app.on('error', err => {
-    debug('server error', err)
+    // debug('error', err)
 });
 
 module.exports = app;

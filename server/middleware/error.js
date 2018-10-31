@@ -1,12 +1,13 @@
-const debug = require('debug')('middleware');
+const debug = require('debug')('middleware:error');
 const accepts = require('accepts');
 
 module.exports = options => {
-    return (ctx, next) => {
-        next();
+    return async (ctx, next) => {
+        debug('start');
+        await next();
         if (ctx.status != 200) {
             let type = accepts(ctx.request).type(['json', 'html']);
-            debug('type %j', type);
+            // debug('type %j', type);
             switch (type) {
                 case 'html':
                     ctx.body = `<h1>${ctx.message}</h1>`;
@@ -24,6 +25,6 @@ module.exports = options => {
                     }
             }
         }
-        debug('error finished');
+        debug('end');
     }
 }

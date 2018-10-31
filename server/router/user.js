@@ -1,9 +1,9 @@
 let router = require('koa-router')();
+let UserService = require('../service/user');
 
-router.get('/', (ctx, next) => {
-    ctx.body = {
-        success: true
-    }
+router.get('/', async (ctx, next) => {
+    let respData = await new UserService().getbalance();
+    ctx.body = respData
 });
 
 module.exports = router;
