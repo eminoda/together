@@ -13,7 +13,7 @@ class Http {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'X-Requested-With': 'XMLHttpRequest',
-                'Cookie': options.ctx.headers['cookie']
+                'Cookie': options.ctx.headers['cookie'] || ''
             }
         });
         this.interceptorRequest();
@@ -21,7 +21,7 @@ class Http {
     }
     interceptorRequest() {
         let self = this;
-        return this.instance.interceptors.request.use(function(instance) {
+        return this.instance.interceptors.request.use(function (instance) {
             if (instance.method == 'get') {
                 instance.params = instance.data;
                 instance.data = null;
@@ -32,7 +32,7 @@ class Http {
     }
     interceptorResponse() {
         let self = this;
-        return this.instance.interceptors.response.use(function(response) {
+        return this.instance.interceptors.response.use(function (response) {
             return new Promise((resolve, reject) => {
                 try {
                     self.saveCookieToResponse(response.headers['set-cookie']);
@@ -62,7 +62,12 @@ class Http {
             url: options.url,
             data: options.data
         }
-        return this.instance(config)
+        try {
+            return this.instance(config)
+        } catch (err) {
+            logger.error(err.message);
+            throw (err);
+        }
     }
     saveCookieToResponse(cookies) {
         if (cookies) {

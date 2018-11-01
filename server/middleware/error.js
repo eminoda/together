@@ -1,4 +1,5 @@
 const debug = require('debug')('middleware:error');
+const logger = require('../util/logger')('middleware:error');
 const accepts = require('accepts');
 
 module.exports = options => {
@@ -7,6 +8,7 @@ module.exports = options => {
         try {
             await next();
         } catch (err) {
+            logger.error(err);
             if (ctx.status != 200) {
                 debug('url %j', ctx.path);
                 let type = accepts(ctx.request).type(['json', 'html']);

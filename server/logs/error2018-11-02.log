@@ -1,0 +1,8 @@
+[2018-11-02T00:02:24.251] [ERROR] router:base - ReferenceError: respData1 is not defined
+    at router.get (e:\my_work\github\together\server\router\base.js:13:20)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2018-11-02T00:04:47.834] [ERROR] middleware:error - ReferenceError: respData1 is not defined
+    at router.get (e:\my_work\github\together\server\router\base.js:13:20)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)

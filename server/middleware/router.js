@@ -5,7 +5,7 @@ const user = require('../router/user');
 const base = require('../router/base');
 
 module.exports = compose([
-    user.routes(),
+    // user.routes(),
     base.routes(),
     router.allowedMethods()
 ])

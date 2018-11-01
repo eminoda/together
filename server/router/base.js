@@ -1,15 +1,18 @@
 let router = require('koa-router')();
 let logger = require('../util/logger')('router:base');
-let Adapter = require('../util/adapter');
+let HttpService = require('../util/http');
+
 // 通配
 router.get('*', async (ctx, next) => {
     try {
-        let respData = await new Adapter({
+        let respData = await new HttpService({
             ctx
-        }).dispatch();
+        }).request({
+            url: ctx.path
+        })
         ctx.body = respData;
     } catch (err) {
-        logger.error(err);
+        throw err;
     }
 })
 module.exports = router;
