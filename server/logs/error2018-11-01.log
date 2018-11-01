@@ -1,0 +1,23 @@
+[2018-11-01T17:32:52.351] [INFO] adapter - { body: {}, query: { tes: '1' }, url: '/user/getaccountrpt' }
+[2018-11-01T18:23:18.958] [ERROR] router:base - TypeError: Class constructor Adapter cannot be invoked without 'new'
+    at router.get (e:\github\together\server\router\base.js:7:15)
+    at dispatch (e:\github\together\server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at next (e:\github\together\server\node_modules\koa-router\node_modules\koa-compose\index.js:45:18)
+    at e:\github\together\server\node_modules\koa-router\lib\router.js:346:16
+    at dispatch (e:\github\together\server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at e:\github\together\server\node_modules\koa-router\node_modules\koa-compose\index.js:36:12
+    at dispatch (e:\github\together\server\node_modules\koa-router\lib\router.js:351:31)
+    at dispatch (e:\github\together\server\node_modules\koa-compose\index.js:42:32)
+    at dispatch (e:\github\together\server\node_modules\koa-router\lib\router.js:332:32)
+    at dispatch (e:\github\together\server\node_modules\koa-compose\index.js:42:32)
+[2018-11-01T18:23:32.399] [ERROR] router:base - TypeError: Cannot read property 'method' of undefined
+    at Adapter._parse (e:\github\together\server\util\adapter.js:10:28)
+    at new Adapter (e:\github\together\server\util\adapter.js:6:14)
+    at router.get (e:\github\together\server\router\base.js:7:15)
+    at dispatch (e:\github\together\server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at next (e:\github\together\server\node_modules\koa-router\node_modules\koa-compose\index.js:45:18)
+    at e:\github\together\server\node_modules\koa-router\lib\router.js:346:16
+    at dispatch (e:\github\together\server\node_modules\koa-router\node_modules\koa-compose\index.js:44:32)
+    at e:\github\together\server\node_modules\koa-router\node_modules\koa-compose\index.js:36:12
+    at dispatch (e:\github\together\server\node_modules\koa-router\lib\router.js:351:31)
+    at dispatch (e:\github\together\server\node_modules\koa-compose\index.js:42:32)

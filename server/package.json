@@ -4,7 +4,7 @@
   "description": "happy make a api server 4 java",
   "main": "index.js",
   "scripts": {
-    "start": "set DEBUG=*,-koa*,-follow* & supervisor -i ./node_modules node ./bin/www.js",
+    "start": "set DEBUG=*,-koa*,-follow*,-log*,-stream* & supervisor -i ./node_modules node ./bin/www.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "eminoda",
@@ -18,8 +18,10 @@
   },
   "devDependencies": {
     "axios": "^0.18.0",
+    "cookie": "^0.3.1",
     "debug": "^4.1.0",
     "extend2": "^1.0.0",
+    "log4js": "^3.0.6",
     "supervisor": "^0.12.0",
     "webpack": "^4.23.1",
     "webpack-dev-server": "^3.1.10"

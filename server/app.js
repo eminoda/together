@@ -8,7 +8,7 @@ app.use(middleware);
 debug('middleware is loaded');
 
 app.on('error', err => {
-    // debug('error', err)
+    debug('error', err)
 });
 
 module.exports = app;

@@ -1,0 +1,44 @@
+[2018-11-01T17:09:26.855] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:09:26.862] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:09:29.618] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:09:29.620] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:09:30.791] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:09:30.792] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:09:31.805] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:09:31.807] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:09:42.223] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:09:42.226] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:10:00.300] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:10:00.307] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:10:06.108] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:10:06.110] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:10:08.454] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:10:08.456] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:10:22.747] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:10:22.748] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:10:52.328] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:10:52.335] [INFO] router:base - /user/getaccountrpt
+[2018-11-01T17:10:54.516] [DEBUG] http - { adapter: [Function: httpAdapter],
+  transformRequest: { '0': [Function: transformRequest] },
+  transformResponse: { '0': [Function: transformResponse] },
+  timeout: 3000,
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+  maxContentLength: -1,
+  validateStatus: [Function: validateStatus],
+  headers: 
+   { common: { Accept: 'application/json, text/plain, */*' },
+     delete: {},
+     get: {},
+     head: {},
+     post: { 'Content-Type': 'application/x-www-form-urlencoded' },
+     put: { 'Content-Type': 'application/x-www-form-urlencoded' },
+     patch: { 'Content-Type': 'application/x-www-form-urlencoded' },
+     'Content-Type': 'application/x-www-form-urlencoded',
+     'X-Requested-With': 'XMLHttpRequest',
+     Cookie: '_gscu_365446253=40352102kpvvs318; _ga=GA1.1.2098402231.1540352103; Hm_lvt_d46c4a8ed78f8b2af3de3849779dfdb7=1540520954; OUTFOX_SEARCH_USER_ID_NCOO=1177405283.9841452; Hm_lvt_2ef1aa85abed08ce76cd8d41d5f2de71=1540800411; tid=null; _gscbrs_365446253=1; Hm_lvt_b857240635262b916f0ffb76c4d81140=1540539450,1540877975; Hm_lpvt_b857240635262b916f0ffb76c4d81140=1540878125; finance=1; tk=ATAANUo8rKrp3H3jrRMe7QK9MRu5Ry5d0Tf9rNzV7rQiIysCdgAIoHZIUuW5lYldWGia; Hm_lvt_4296eba3a0367a7d61207a72dc7a6b84=1540352103,1540949673; Hm_lpvt_4296eba3a0367a7d61207a72dc7a6b84=1540968381; uid=46656085970401; nick=YWFhYWE=; userLever=0; token=eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI0NjY1NjA4NTk3MDQwMSIsIm5pY2siOiJZV0ZoWVdFPSIsInVzZXJJbmZvIjoiQWFvQmVKa3R1NG5kVGV4dHIxL2pnYVlIZFFFdkM0NXI4eFhCcnExakl3MlhOSnJ3SWhnQm01QnFmWkwxWFF2NnZJZDJFbTRNNWhNYkNyTzY2UE0vNGdsL2ZRSit6U01BZzNhQjI4L0tya3Y3R0dBNHpUaVpMRFpVbmxid3F4aGFsYUF3d3NtQzJkbUxVUllsOXV5WWxOZ0xDZS9QZXJrd0JTa09qeTNTNllmVTNNYXlxKzNlL2d2SGZ2eGtOaEVPYXpnejloTGRDMEF5U2NBelFsUExlUkpDTGxkSjBLOVFWK1JPcnpRNEtrdFlRbnpTcjJCcGZidnVvMzRESFlvY1BtSElwSFZVQUoyQnU3R0l6SVI2enNDeW1RcWFWZFNLMDVLcUwvbFdFbVJFNDdkVUM1ejZSdHJxRksxOTNNUXN6RkwwOXpEcmFORXNPdExqK0ZrUFIvQ2diOVIwVHBpa2t3UkptTm5scVBlTHZLa2RCN3M3OGRteWx3eklkakxnYnV1UHhXS3VRWW5pWUFKTExNbGpxdFVOUnU0Tm9MUDJrMlpIQ3VOdUJxNmpaU2xTbUhpM0Rab2pOL09PdmdDQzEwTGUxWGRldXY5VDQvaERNbnBBY0JIUVhaU2xJbEQ3TmFadlVJTjhOUGYxUjFvVjNDc0JoUDZHbmcwWitNU0dtN3U1TW83V055RmhFKzRIN0tibE9PckltUmkya0ZFQVdkR1FFckRYZDdLZ245a0FqOWpWc2JHRjJuRmlTSnJja2RQOCIsInVzZXJMZXZlciI6IjAifQ.sn50ifJedjOOuDJAvT4A6XzpGTshpITKJXY2uJX7eMk' },
+  method: 'get',
+  baseURL: 'http://bg.niu100.com',
+  url: '/user/getaccountrpt',
+  data: null,
+  params: {} }
