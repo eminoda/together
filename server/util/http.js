@@ -8,7 +8,7 @@ class Http {
     constructor(options = {}) {
         this.ctx = options.ctx;
         this.instance = axios.create({
-            baseURL: 'http://192.168.1.74:7080',
+            baseURL: 'http://bg.gu100.com',
             method: options.ctx.method.toLowerCase(),
             timeout: 3000,
             headers: {
@@ -23,7 +23,7 @@ class Http {
     }
     interceptorRequest() {
         let self = this;
-        return this.instance.interceptors.request.use(function(instance) {
+        return this.instance.interceptors.request.use(function (instance) {
             if (instance.method == 'get') {
                 instance.params = instance.data;
                 instance.data = null;
@@ -40,7 +40,7 @@ class Http {
     }
     interceptorResponse() {
         let self = this;
-        return this.instance.interceptors.response.use(function(response) {
+        return this.instance.interceptors.response.use(function (response) {
             return new Promise((resolve, reject) => {
                 try {
                     self.saveCookieToResponse(response.headers['set-cookie']);

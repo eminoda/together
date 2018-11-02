@@ -3,6 +3,7 @@ const compose = require('koa-compose');
 const router = require('koa-router')();
 const receive = require('../router/receive');
 const user = require('../router/user');
+const trade = require('../router/trade');
 const common = require('../router/common');
 const dispatcher = require('./dispatcher');
 
@@ -11,5 +12,6 @@ module.exports = compose([
     // router.allowedMethods(),
     dispatcher,
     user.routes(),
+    trade.routes(),
     common.routes()
 ])
