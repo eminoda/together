@@ -1,11 +1,11 @@
 const debug = require('debug')('middleware:router');
 const compose = require('koa-compose');
 const router = require('koa-router')();
-const base = require('../router/base');
 const user = require('../router/user');
+const dispatch = require('../router/dispatch');
 
 module.exports = compose([
-    // user.routes(),
-    base.routes(),
+    user.routes(),
+    dispatch.routes(),
     router.allowedMethods()
 ])

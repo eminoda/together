@@ -7,8 +7,6 @@ module.exports = options => {
         debug('start');
         try {
             await next();
-        } catch (err) {
-            logger.error(err);
             if (ctx.status != 200) {
                 debug('url %j', ctx.path);
                 let type = accepts(ctx.request).type(['json', 'html']);
@@ -29,6 +27,12 @@ module.exports = options => {
                             resultMsg: ctx.message
                         }
                 }
+            }
+        } catch (err) {
+            logger.error(err.message);
+            ctx.body = {
+                success: false,
+                resultMsg: err.stack
             }
         }
         debug('end');

@@ -2,13 +2,13 @@ const axios = require('axios');
 const logger = require('./logger')('http');
 const debug = require('debug')('http');
 const cookie = require('cookie');
-// const tough = require('tough-cookie');
-// const Cookie = tough.Cookie;
+const qs = require('qs');
 class Http {
     constructor(options = {}) {
         this.ctx = options.ctx;
         this.instance = axios.create({
-            baseURL: 'http://bg.niu100.com',
+            baseURL: 'http://192.168.1.74:7080',
+            method: options.ctx.method.toLowerCase(),
             timeout: 3000,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -25,6 +25,10 @@ class Http {
             if (instance.method == 'get') {
                 instance.params = instance.data;
                 instance.data = null;
+            } else {
+                if (instance.headers['Content-Type'] == 'application/x-www-form-urlencoded') {
+                    instance.data = qs.stringify(instance.data);
+                }
             }
             debug('url %j', instance.url);
             debug('method %j', instance.method);
