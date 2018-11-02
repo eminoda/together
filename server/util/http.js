@@ -2,6 +2,7 @@ const axios = require('axios');
 const logger = require('./logger')('http');
 const debug = require('debug')('http');
 const cookie = require('cookie');
+const extend = require('extend2');
 const qs = require('qs');
 class Http {
     constructor(options = {}) {
@@ -14,7 +15,8 @@ class Http {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'X-Requested-With': 'XMLHttpRequest',
                 'Cookie': options.ctx.headers['cookie'] || ''
-            }
+            },
+            data: options.ctx.method.toLowerCase() == 'get' ? options.ctx.query : options.ctx.request.body
         });
         this.interceptorRequest();
         this.interceptorResponse();
@@ -61,14 +63,11 @@ class Http {
             })
         })
     }
-    request(options = {}) {
-        let config = {
-            method: (options.method || 'get').toLowerCase(),
-            url: options.url,
-            data: options.data
-        }
+    request(config = {}) {
+        let options = extend(this.options, config);
+        debug('request %j', config);
         try {
-            return this.instance(config)
+            return this.instance(options)
         } catch (err) {
             logger.error(err.message);
             throw (err);

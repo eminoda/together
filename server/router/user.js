@@ -1,20 +1,19 @@
+const debug = require('debug')('router:user');
 let router = require('koa-router')();
-let UserService = require('../service/user');
-let CommonService = require('../service/common');
 let HttpService = require('../util/http');
 
-router.prefix('/user')
+router.prefix('/V1.0/user');
 
-router.post('/login', async (ctx, next) => {
-    console.log(ctx.request.body);
+router.all('/balance', async (ctx, next) => {
+    debug('start');
     let respData = await new HttpService({
         ctx
     }).request({
         url: ctx.path,
-        method: 'post',
-        data: ctx.request.body
+        method: 'get'
     })
     ctx.body = respData;
+    debug('end');
 })
 
 module.exports = router;

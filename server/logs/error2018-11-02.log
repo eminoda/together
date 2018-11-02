@@ -582,3 +582,20 @@
     at e:\github\together\server\util\http.js:42:20
     at <anonymous>
     at process._tickCallback (internal/process/next_tick.js:189:7)
+[2018-11-02T17:15:28.057] [ERROR] middleware:error - Cannot read property 'method' of undefined
+[2018-11-02T17:20:03.642] [ERROR] middleware:error - middleware.then is not a function
+[2018-11-02T17:52:09.898] [ERROR] middleware:error - next is not a function
+[2018-11-02T17:52:25.989] [ERROR] middleware:error - next is not a function
+[2018-11-02T17:52:27.263] [ERROR] middleware:error - next is not a function
+[2018-11-02T17:52:41.079] [ERROR] middleware:error - next is not a function
+[2018-11-02T17:53:07.307] [ERROR] middleware:error - next is not a function
+[2018-11-02T17:53:08.405] [ERROR] middleware:error - next is not a function
+[2018-11-02T18:00:52.952] [ERROR] middleware:error - Request failed with status code 404
+[2018-11-02T18:24:06.113] [ERROR] middleware:error - Request failed with status code 405
+[2018-11-02T18:24:07.797] [ERROR] middleware:error - Request failed with status code 405
+[2018-11-02T18:24:42.196] [ERROR] middleware:error - Request failed with status code 405
+[2018-11-02T18:24:43.311] [ERROR] middleware:error - Request failed with status code 405
+[2018-11-02T18:24:44.293] [ERROR] middleware:error - Request failed with status code 405
+[2018-11-02T18:24:45.663] [ERROR] middleware:error - Request failed with status code 405
+[2018-11-02T18:31:02.152] [ERROR] middleware:error - Identifier 'config' has already been declared
+[2018-11-02T18:31:17.774] [ERROR] middleware:error - Request failed with status code 405
