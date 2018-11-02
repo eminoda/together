@@ -12,7 +12,18 @@ router.all('/stockLimits', async (ctx, next) => {
         url: ctx.path,
         method: 'get'
     });
-    ctx.body = respData;
+    let resultData = {
+        limit: []
+    }
+    for (let index in respData.list) {
+        console.log(index);
+        resultData.limit.push({
+            id: Number(index) + 1,
+            stockCode: respData.list[index].stkCd,
+            stockName: respData.list[index].stkNm
+        });
+    }
+    ctx.body = resultData;
     debug('end');
 })
 
