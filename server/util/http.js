@@ -21,18 +21,20 @@ class Http {
     }
     interceptorRequest() {
         let self = this;
-        return this.instance.interceptors.request.use(function (instance) {
+        return this.instance.interceptors.request.use(function(instance) {
             if (instance.method == 'get') {
                 instance.params = instance.data;
                 instance.data = null;
             }
-            // logger.debug(instance);
+            debug('url %j', instance.url);
+            debug('method %j', instance.method);
+            debug('data %j', instance.method == 'get' ? instance.params : instance.data);
             return instance;
         })
     }
     interceptorResponse() {
         let self = this;
-        return this.instance.interceptors.response.use(function (response) {
+        return this.instance.interceptors.response.use(function(response) {
             return new Promise((resolve, reject) => {
                 try {
                     self.saveCookieToResponse(response.headers['set-cookie']);
@@ -56,7 +58,6 @@ class Http {
         })
     }
     request(options = {}) {
-        debug(options);
         let config = {
             method: (options.method || 'get').toLowerCase(),
             url: options.url,

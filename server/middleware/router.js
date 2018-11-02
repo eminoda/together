@@ -1,8 +1,8 @@
-const debug = require('debug')('middleware');
+const debug = require('debug')('middleware:router');
 const compose = require('koa-compose');
 const router = require('koa-router')();
-const user = require('../router/user');
 const base = require('../router/base');
+const user = require('../router/user');
 
 module.exports = compose([
     // user.routes(),

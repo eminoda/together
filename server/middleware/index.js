@@ -4,7 +4,10 @@ const logger = require('./logger');
 const error = require('./error');
 const dispatch = require('./dispatch');
 const router = require('./router');
-// const user = require('../router/user');
+
+/**
+ * 中间件
+ */
 module.exports = compose([
     error(),
     logger,
