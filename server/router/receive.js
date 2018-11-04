@@ -1,7 +1,6 @@
 const router = require('koa-router')();
 const logger = require('../util/logger')('router:base');
 const debug = require('debug')('router:receive');
-// const Adapter = require('../util/adapter');
 const Http = require('../util/http');
 /**
  * 通配路由

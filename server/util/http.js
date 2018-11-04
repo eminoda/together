@@ -7,29 +7,34 @@ const qs = require('qs');
 class Http {
     constructor(options = {}) {
         this.ctx = options.ctx;
-        this.instance = axios.create({
-            baseURL: 'http://bg.gu100.com',
+        this.instance = this._createInstance(options);
+        this.interceptorRequest();
+        this.interceptorResponse();
+    }
+    _createInstance(options = {}) {
+        return axios.create({
+            baseURL: process.env.API_URL,
             method: options.ctx.method.toLowerCase(),
             timeout: 3000,
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-Requested-With': 'XMLHttpRequest',
-                'Cookie': options.ctx.headers['cookie'] || ''
-            },
-            data: options.ctx.method.toLowerCase() == 'get' ? options.ctx.query : options.ctx.request.body
-        });
-        this.interceptorRequest();
-        this.interceptorResponse();
+                'Cookie': this.ctx.headers['cookie'] || '',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
     }
     interceptorRequest() {
         let self = this;
         return this.instance.interceptors.request.use(function (instance) {
+            if (!instance.headers['Content-Type']) {
+                instance.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+            }
+
             if (instance.method == 'get') {
-                instance.params = instance.data;
+                instance.params = instance.data || self.ctx.query;
                 instance.data = null;
             } else {
                 if (instance.headers['Content-Type'] == 'application/x-www-form-urlencoded') {
-                    instance.data = qs.stringify(instance.data);
+                    instance.data = qs.stringify(instance.data || self.ctx.request.body);
                 }
             }
             debug('url %j', instance.url);
@@ -64,10 +69,9 @@ class Http {
         })
     }
     request(config = {}) {
-        let options = extend(this.options, config);
-        debug('request %j', config);
         try {
-            return this.instance(options)
+            debug('request %j', config);
+            return this.instance(config)
         } catch (err) {
             logger.error(err.message);
             throw (err);
