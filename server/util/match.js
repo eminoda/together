@@ -1,9 +1,11 @@
+const constant = require('./constant');
 const url = {
-    '/user/getbalance': '/V1.0/user/balance',
-    '/user/login': '/V1.0/user/login',
-    '/user/uploadHeader': '/V1.0/user/uploadHeader',
-    '/upload': '/upload',
-    '/trade/getstocklimit': '/V1.0/trade/stockLimits'
+    '/upload': constant.URL.GOBAL_UPLOAD,
+    '/user/login': constant.URL.USER_LOGIN,
+    '/user/getbalance': constant.URL.USER_BALANCE,
+    '/user/uploadHeader': constant.URL.USER_UPLOADHEADER,
+    '/user/getmybank': constant.URL.USER_BANK,
+    '/trade/getstocklimit': constant.URL.TRADE_STOCKLIMITS
 }
 module.exports = (originUrl) => {
     return url[originUrl]
