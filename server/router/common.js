@@ -4,8 +4,6 @@ const FormData = require('form-data');
 const Http = require('../util/http');
 const util = require('../util');
 const Transfer = require('../core/transfer');
-const Action = require('../core/action');
-const md5 = require('md5');
 
 router.post('/upload', async (ctx, next) => {
     let formData = new FormData();

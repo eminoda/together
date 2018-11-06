@@ -75,3 +75,24 @@ router.all('*', async (ctx, next) => {
     }
 }
 ````
+
+## 一般请求
+直接调用Http访问
+````
+router.post('/upload', async (ctx, next) => {
+    let formData = new FormData();
+    formData.append('picFile', util.getTempFileStream(ctx.state.tempUploadDir));
+
+    let respData = await new Http({
+        ctx
+    }).request({
+        url: ctx.path,
+        method: ctx.method,
+        data: formData,
+        headers: {
+            'Content-Type': `multipart/form-data; boundary=${formData._boundary}`
+        }
+    })
+    ctx.body = respData;
+})
+````

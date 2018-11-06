@@ -41,4 +41,11 @@ module.exports = [{
         data.member.bindCard = data.banks && data.banks.length > 0 || false
         return data;
     }
+}, {
+    name: '/user/uploadHeader',
+    type: 0,
+    requestOptions: {
+        method: 'post',
+        url: URL.USER_UPLOADHEADER
+    }
 }]
