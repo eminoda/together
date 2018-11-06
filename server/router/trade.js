@@ -2,7 +2,7 @@ const debug = require('debug')('router:user');
 let router = require('koa-router')();
 let HttpService = require('../util/http');
 
-router.prefix('/V1.0/trade');
+router.prefix('/trade');
 
 router.all('/stockLimits', async (ctx, next) => {
     debug('start');

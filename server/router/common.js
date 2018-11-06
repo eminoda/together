@@ -3,6 +3,9 @@ const router = require('koa-router')();
 const FormData = require('form-data');
 const Http = require('../util/http');
 const util = require('../util');
+const Transfer = require('../core/transfer');
+const Action = require('../core/action');
+const md5 = require('md5');
 
 router.post('/upload', async (ctx, next) => {
     debug('start');
@@ -24,14 +27,16 @@ router.post('/upload', async (ctx, next) => {
 })
 router.all('*', async (ctx, next) => {
     debug('start');
-    // dispatch 无路由匹配
-    let respData = await new Http({
+    let respData = await new Transfer({
         ctx
-    }).request({
-        url: ctx.path,
-        method: ctx.method
-    });
+    }).run();
     ctx.body = respData;
+    // let respData = await new Http({
+    //     ctx
+    // }).request({
+    //     url: ctx.path,
+    //     method: ctx.method
+    // });
     debug('end');
 })
 
