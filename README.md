@@ -7,7 +7,10 @@
 
 ![示例](./doc/problem.png)
 
-# 转换Demo
+# 解决场景
+![示例](./doc/example.png)
+
+# 转换Demo示例
 ## 通配 Default
 如果未设置任何配置，则会将原始请求，代理给后端，只是替换**后端API地址**
 ````
