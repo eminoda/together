@@ -40,7 +40,7 @@ router.all('*', async (ctx, next) => {
 ````
 
 ## 单次请求分发多个接口获取数据
-还是维护action，注意需要**设置type**，区分分发多次；
+还是维护action，注意需要**设置type=1**，区分分发多次；
 
 维护**responseMapper**，对返回参数集合做处理
 ````

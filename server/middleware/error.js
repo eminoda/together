@@ -15,7 +15,7 @@ module.exports = options => {
         } catch (err) {
             logger.error(err);
             let type = accepts(ctx.request).type(['json', 'html']);
-            _rendErrorResponse(ctx, err.stack);
+            _rendErrorResponse(ctx, err.message);
         }
         debug('end');
     }

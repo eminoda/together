@@ -1,6 +1,6 @@
 const extend = require('extend2');
 const is = require('is-type-of');
-const defaultAction = require('../action/userAction');
+const defaultAction = require('../action/indexAction');
 const Action = require('./action');
 
 class Transfer {
@@ -67,7 +67,7 @@ class Transfer {
         return Promise.all(fn).then(datas => {
             return datas
         }).catch(err => {
-            throw new Error(err);
+            throw err;
         })
     }
     _responseMapper(data) {

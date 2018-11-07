@@ -24,7 +24,7 @@ class Http {
     }
     interceptorRequest() {
         let self = this;
-        return this.instance.interceptors.request.use(function (instance) {
+        return this.instance.interceptors.request.use(function(instance) {
             if (!instance.headers['Content-Type']) {
                 instance.headers['Content-Type'] = 'application/x-www-form-urlencoded'
             }
@@ -45,25 +45,25 @@ class Http {
     }
     interceptorResponse() {
         let self = this;
-        return this.instance.interceptors.response.use(function (response) {
+        return this.instance.interceptors.response.use(function(response) {
             return new Promise((resolve, reject) => {
                 try {
                     self.saveCookieToResponse(response.headers['set-cookie']);
                     if (response.status == 200) {
+                        // 业务逻辑
                         let data = response.data;
-                        resolve(data);
+                        if (data.success || data.status == 'true') {
+                            resolve(data);
+                        } else {
+                            logger.error(data);
+                            reject(new Error(data.resultMsg || '服务器错误'));
+                        }
                     } else {
-                        reject({
-                            success: false,
-                            resultMsg: response.statusText
-                        });
+                        reject(new Error(response.statusText));
                     }
                 } catch (err) {
                     logger.error(err);
-                    reject({
-                        success: false,
-                        resultMsg: err.message
-                    });
+                    reject(err);
                 }
             })
         })
