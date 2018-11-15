@@ -3,7 +3,7 @@ const extend = require('extend2');
 const Http = require('../util/http');
 
 /**
- * Action
+ * Action 
  */
 class Action {
     /**
@@ -21,35 +21,27 @@ class Action {
         }
         this.ctx = options.ctx;
         this.requestOptions = this._rewriteRequest(options.requestOptions);
-        this._preRequest(options.requestOptions);
     }
     async request() {
         return await new Http({
             ctx: this.ctx
         }).request(this.requestOptions)
     }
-    // 自定义过滤器，执行无法指定的规则
-    _preRequest(requestOptions) {
-        if (requestOptions && is.object(requestOptions.data)) {
-            Object.keys(requestOptions.data).forEach(key => {
-                let next = requestOptions.data[key];
-                if (is.function(next)) {
-                    this.requestOptions.data && (this.requestOptions.data[key] = next.call(this));
-                }
-            })
-        }
-    }
     // 重写默认request参数
-    _rewriteRequest(options) {
+    _rewriteRequest(requestOptions) {
+        // 默认配置 
         let defaultOptions = {
             url: this.ctx.path,
             method: this.ctx.method,
             data: extend(true, {}, this.ctx.query, this.ctx.request.body) //this.ctx.method == 'get' ? this.ctx.query : this.ctx.request.body
         }
-        if (options) {
-            return extend(true, {}, defaultOptions, options);
-        }
-        return defaultOptions;
+        requestOptions = extend(true, {}, defaultOptions, requestOptions);
+        // 函数则执行；请求参数则替换；其他直接使用
+        Object.keys(requestOptions.data).forEach(key => {
+            let fn = requestOptions.data[key];
+            requestOptions.data[key] = is.function(fn) ? fn.call(this) : this._getData(fn) ? this._getData(fn) : fn;
+        })
+        return requestOptions;
     }
     // 获取指定请求参数（url params/post body）
     _getData(key) {

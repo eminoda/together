@@ -1,4 +1,4 @@
-const debug = require('debug')('router:user');
+const debug = require('debug')('router:common');
 const router = require('koa-router')();
 const FormData = require('form-data');
 const Http = require('../util/http');

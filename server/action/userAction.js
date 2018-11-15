@@ -1,51 +1,52 @@
 const md5 = require('md5');
 const URL = require('../util/constant').URL;
-module.exports = [{
-    name: '/user/login',
-    type: 0,
-    requestOptions: {
-        method: 'post',
-        url: URL.USER_LOGIN,
-        data: {
-            'password': function() {
-                return md5(this._getData('password') + '!@$#%^&*(%^##$!');
+module.exports = {
+    '/user/login': {
+        name: '登录',
+        requestOptions: {
+            method: 'post',
+            url: URL.USER_LOGIN,
+            data: {
+                'password': function() {
+                    return md5(this._getData('password') + '!@$#%^&*(%^##$!');
+                },
+                'passStr': '123',
+                'passStr2': 'password',
+                'passStr3': 'params'
             }
         }
-    }
-}, {
-    name: '/user/getbalance',
-    type: 1,
-    children: [{
-        name: 'balance',
-        type: 0,
-        requestOptions: {
-            method: 'get',
-            url: URL.USER_BALANCE
+    },
+    '/user/getbalance': {
+        name: '用户信息',
+        children: [{
+            name: 'balance',
+            requestOptions: {
+                method: 'get',
+                url: URL.USER_BALANCE
+            }
+        }, {
+            name: 'user',
+            requestOptions: {
+                method: 'get',
+                url: URL.USER
+            }
+        }, {
+            name: 'coupon',
+            requestOptions: {
+                method: 'get',
+                url: URL.USER_COUPON
+            }
+        }],
+        responseMapper(data) {
+            data.member.bindCard = data.banks && data.banks.length > 0 || false
+            return data;
         }
-    }, {
-        name: 'user',
-        type: 0,
+    },
+    '/user/uploadHeader': {
+        name: '上传头像',
         requestOptions: {
-            method: 'get',
-            url: URL.USER
+            method: 'post',
+            url: URL.USER_UPLOADHEADER
         }
-    }, {
-        name: 'coupon',
-        type: 0,
-        requestOptions: {
-            method: 'get',
-            url: URL.USER_COUPON
-        }
-    }],
-    responseMapper(data) {
-        data.member.bindCard = data.banks && data.banks.length > 0 || false
-        return data;
     }
-}, {
-    name: '/user/uploadHeader',
-    type: 0,
-    requestOptions: {
-        method: 'post',
-        url: URL.USER_UPLOADHEADER
-    }
-}]
+}

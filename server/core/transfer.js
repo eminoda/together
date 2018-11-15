@@ -9,69 +9,40 @@ class Transfer {
             throw new Error('Transfer 初始化失败：ctx 未配置');
         }
         this.ctx = options.ctx;
-        this.actions = defaultAction;
-        this.parentsAction = {};
+        this.actions = defaultAction || {};
+        this.action = this.actions[this.ctx.path] || {};
         this.promiseFn = [];
-        this._matchAction();
+        this._initAction();
     }
-    // 按照url旧地址匹配默认action
-    _matchAction() {
-        if (!this.actions) {
+    _initAction() {
+        if (!this.action) {
             throw new Error('未配置 action');
         }
-        if (this.actions && this.actions.length > 0) {
-            for (let action of this.actions) {
-                if (action.name == this.ctx.path) {
-                    this.parentAction = action;
-                    if (action.type) {
-                        let childActions = action.children;
-                        // 因为ctx.path，没有用递归
-                        for (let childAction of childActions) {
-                            this._pushAction(this._createAction(childAction.requestOptions));
-                        }
-                    } else {
-                        this.promiseFn = this._createAction(action.requestOptions);
-                        return;
-                    }
-                }
+        if (this.action.children) {
+            for (let childAction of this.action.children) {
+                this.promiseFn.push(this._createAction(childAction.requestOptions));
             }
-        }
-        if (!this.promiseFn || this.promiseFn && this.promiseFn.length < 1) {
-            this.promiseFn = this._createAction({});
+        } else {
+            this.promiseFn.push(this._createAction(this.action.requestOptions));
         }
     }
-    _pushAction(action) {
-        this.promiseFn.push(action);
-    }
-    _createAction(requestOptions) {
+    _createAction(requestOptions = {}) {
         return new Action({
             ctx: this.ctx,
-            requestOptions: requestOptions
+            requestOptions
         }).request()
     }
     async run() {
         let result = {}
-        if (is.array(this.promiseFn)) {
-            let dataCollection = await this._mix(this.promiseFn);
-            for (let data of dataCollection) {
-                result = extend(true, result, data);
-            }
-            this._responseMapper(result);
-            return result;
-        } else {
-            return this.promiseFn;
+        if (!is.array(this.promiseFn)) {
+            throw new Error('promise 解析错误');
         }
-    }
-    // 混合Promise，注意：返回是个data集合
-    _mix(fn) {
-        return Promise.all(fn).then(datas => {
-            return datas
-        }).catch(err => {
-            throw err;
-        })
-    }
-    _responseMapper(data) {
-        return this.parentAction ? this.parentAction.responseMapper(data) : data;
+        // 混合Promise，注意：返回是个data集合
+        let datas = await Promise.all(this.promiseFn);
+        for (let data of datas) {
+            result = extend(true, result, data);
+        }
+        return this.action.responseMapper ? this.action.responseMapper(result) : result;
     }
 }
 module.exports = Transfer;
