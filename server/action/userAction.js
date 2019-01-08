@@ -6,14 +6,7 @@ module.exports = {
         requestOptions: {
             method: 'post',
             url: URL.USER_LOGIN,
-            data: {
-                'password': function() {
-                    return md5(this._getData('password') + '!@$#%^&*(%^##$!');
-                },
-                'passStr': '123',
-                'passStr2': 'password',
-                'passStr3': 'params'
-            }
+            data: {}
         }
     },
     '/user/getbalance': {
