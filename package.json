@@ -1,0 +1,22 @@
+{
+  "name": "together",
+  "version": "2.0.0",
+  "description": "接口转换",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eminoda/together.git"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "eminoda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eminoda/together/issues"
+  },
+  "homepage": "https://github.com/eminoda/together#readme"
+}
