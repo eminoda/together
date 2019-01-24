@@ -37,7 +37,7 @@ ps：此项目是个 Demo 示例，更多 feature 将在此尝试
 
     ```js
     // together\server\router\common.js
-    router.all("*", async (ctx, next) => {
+    router.all('*', async (ctx, next) => {
     	let respData = await new Transfer({
     		ctx
     	}).run();
@@ -159,9 +159,9 @@ ps：此项目是个 Demo 示例，更多 feature 将在此尝试
     以上规则无法适用的情况，比如一个文件上传的例子：
 
     ```js
-    router.post("/upload", async (ctx, next) => {
+    router.post('/upload', async (ctx, next) => {
     	let formData = new FormData();
-    	formData.append("picFile", util.getTempFileStream(ctx.state.tempUploadDir));
+    	formData.append('picFile', util.getTempFileStream(ctx.state.tempUploadDir));
 
     	let respData = await new Http({
     		ctx
@@ -170,7 +170,7 @@ ps：此项目是个 Demo 示例，更多 feature 将在此尝试
     		method: ctx.method,
     		data: formData,
     		headers: {
-    			"Content-Type": `multipart/form-data; boundary=${formData._boundary}`
+    			'Content-Type': `multipart/form-data; boundary=${formData._boundary}`
     		}
     	});
     	ctx.body = respData;
@@ -210,4 +210,4 @@ ps：此项目是个 Demo 示例，更多 feature 将在此尝试
 
 添加 redis，mysql 等数据库持久层实现
 
-未完待续
+详见 v2 分支
