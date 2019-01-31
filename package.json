@@ -4,6 +4,7 @@
   "description": "接口转换",
   "main": "index.js",
   "scripts": {
+    "start": "node ./main/together-scripts/bin/together-scripts.js start --name=together --author=eminoda",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,14 @@
   "bugs": {
     "url": "https://github.com/eminoda/together/issues"
   },
-  "homepage": "https://github.com/eminoda/together#readme"
+  "homepage": "https://github.com/eminoda/together#readme",
+  "dependencies": {
+    "common-bin": "^2.8.1",
+    "extend2": "^1.0.0",
+    "get-ready": "^2.0.1",
+    "is-type-of": "^1.2.1",
+    "koa": "^2.6.2",
+    "koa-router": "^7.4.0",
+    "zlogger": "^2.0.0"
+  }
 }
