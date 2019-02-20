@@ -5,7 +5,6 @@ const TogetherApplication = require('./together');
 class Application extends TogetherApplication {
 	constructor(options = {}) {
 		super(options);
-		// load 加载启动
 	}
 }
 module.exports = Application;

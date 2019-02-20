@@ -37,35 +37,36 @@ class StartCommand extends Command {
 			detached: true
 		};
 		const child = (this.child = spawn(command, spawnArgv, options));
+		this.logger.info('main pid %s is running', process.pid);
+		this.logger.info('child pid %s is running', child.pid);
 		child.on('message', msg => {
 			this.logger.info(msg.data);
 			if (msg.action == 'together-ready') {
 				// child.unref();
 				// child.disconnect();
+				// this.exit(0);
 			}
 		});
-		child.on('error', err => {
-			// console.log(err);
+		process.on('uncaughtException', err => {
+			this.logger.info(err);
 		});
-		child.once('exit', (code, signal) => {
-			this.logger.info('pid %s is exit,signal %s,code %s', child.pid, signal, code);
+		process.on('exit', code => {
+			this.logger.info('process exit code::%s', code);
 		});
-		mainProcessExitListen();
+		// attach master signal to child
+		// let signal;
+		// ['SIGINT', 'SIGQUIT', 'SIGTERM'].forEach(event => {
+		// 	process.once(event, () => {
+		// 		signal = event;
+		// 		process.exit(0);
+		// 	});
+		// });
+		// process.once('exit', () => {
+		// 	child.kill(signal);
+		// });
 	}
 }
-function mainProcessExitListen() {
-	let signal;
-	['SIGINT', 'SIGQUIT', 'SIGTERM'].forEach(event => {
-		process.once(event, () => {
-			signal = event;
-			process.exit(0);
-		});
-	});
-	// process.once('exit', () => {
-	// 	console.log(`pid::${child.pid} is exit, signal::${signal}`);
-	// 	child.kill(signal);
-	// });
-}
+
 function stringify(obj, ignore) {
 	const result = {};
 	Object.keys(obj).forEach(key => {
